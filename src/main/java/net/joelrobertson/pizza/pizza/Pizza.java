@@ -2,27 +2,17 @@ package net.joelrobertson.pizza.pizza;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import net.joelrobertson.pizza.customerorder.CustomerOrder;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 
 @Entity
-public class Pizza {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Pizza extends AbstractPersistable<Long> {
 
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private CustomerOrder customerOrder;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

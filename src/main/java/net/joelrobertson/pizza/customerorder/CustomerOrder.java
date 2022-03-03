@@ -2,16 +2,14 @@ package net.joelrobertson.pizza.customerorder;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import net.joelrobertson.pizza.pizza.Pizza;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class CustomerOrder {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class CustomerOrder extends AbstractPersistable<Long> {
 
     private String customerName;
 
@@ -20,14 +18,6 @@ public class CustomerOrder {
     @OneToMany(mappedBy = "customerOrder", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Pizza> pizzas = new ArrayList<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getCustomerName() {
         return customerName;
