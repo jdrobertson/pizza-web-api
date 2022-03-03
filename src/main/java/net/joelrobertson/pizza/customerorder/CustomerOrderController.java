@@ -22,4 +22,11 @@ public class CustomerOrderController {
     public CustomerOrder postCustomerOrder(@RequestBody CustomerOrder customerOrder) {
         return customerOrderService.createCustomerOrder(customerOrder);
     }
+
+    @PatchMapping("customerorders/{customerOrderId}")
+    public CustomerOrder patchCustomerOrder(
+            @PathVariable Long customerOrderId,
+            @RequestBody UpdateCustomerOrderDto updateCustomerOrderDto) {
+        return customerOrderService.updateCustomerOrder(customerOrderId, updateCustomerOrderDto);
+    }
 }

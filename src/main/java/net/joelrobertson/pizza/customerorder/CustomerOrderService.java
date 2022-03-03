@@ -20,4 +20,15 @@ public class CustomerOrderService {
     public CustomerOrder createCustomerOrder(CustomerOrder customerOrder) {
         return customerOrderRepository.save(customerOrder);
     }
+
+    public CustomerOrder updateCustomerOrder(Long customerOrderId, UpdateCustomerOrderDto updateCustomerOrderDto) {
+        var customerOrder = customerOrderRepository.findById(customerOrderId);
+        if (customerOrder.isPresent()) {
+            customerOrder.get().setFulfilled(updateCustomerOrderDto.getFulfilled());
+            return customerOrderRepository.save(customerOrder.get());
+        }
+        else {
+            return null;
+        }
+    }
 }
