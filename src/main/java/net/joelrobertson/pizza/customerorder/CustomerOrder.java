@@ -19,7 +19,7 @@ public class CustomerOrder extends AbstractPersistable<Long> {
     @JsonManagedReference
     private List<Pizza> pizzas = new ArrayList<>();
 
-    private Boolean fulfilled;
+    private Boolean fulfilled = false;
 
     public String getCustomerName() {
         return customerName;
