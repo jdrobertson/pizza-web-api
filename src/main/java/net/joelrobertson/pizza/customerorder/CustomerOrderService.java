@@ -1,6 +1,5 @@
 package net.joelrobertson.pizza.customerorder;
 
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class CustomerOrderService {
         return customerOrderRepository.findAll();
     }
 
-    public CustomerOrder createCustomerOrder(@NotNull CustomerOrder customerOrder) {
+    public CustomerOrder createCustomerOrder(CustomerOrder customerOrder) {
         return customerOrderRepository.save(customerOrder);
     }
 }

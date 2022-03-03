@@ -19,6 +19,8 @@ public class CustomerOrder extends AbstractPersistable<Long> {
     @JsonManagedReference
     private List<Pizza> pizzas = new ArrayList<>();
 
+    private Boolean fulfilled;
+
     public String getCustomerName() {
         return customerName;
     }
@@ -41,5 +43,13 @@ public class CustomerOrder extends AbstractPersistable<Long> {
 
     public void setPizzas(List<Pizza> pizzas) {
         this.pizzas = pizzas;
+    }
+
+    public Boolean getFulfilled() {
+        return fulfilled;
+    }
+
+    public void setFulfilled(Boolean fulfilled) {
+        this.fulfilled = fulfilled;
     }
 }
