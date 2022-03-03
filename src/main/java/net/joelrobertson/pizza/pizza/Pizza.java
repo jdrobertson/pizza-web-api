@@ -11,7 +11,8 @@ public class Pizza extends AbstractPersistable<Long> {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JsonBackReference
     private CustomerOrder customerOrder;
 
     public String getName() {
