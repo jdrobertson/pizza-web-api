@@ -17,6 +17,10 @@ public class CustomerOrderService {
         return customerOrderRepository.findAll();
     }
 
+    public CustomerOrder getCustomerOrderById(Long customerOrderId) {
+        return customerOrderRepository.findById(customerOrderId).orElse(null);
+    }
+
     public CustomerOrder createCustomerOrder(CustomerOrder customerOrder) {
         return customerOrderRepository.save(customerOrder);
     }

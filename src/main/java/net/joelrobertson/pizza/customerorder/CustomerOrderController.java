@@ -7,23 +7,30 @@ import java.util.List;
 @RestController
 public class CustomerOrderController {
 
+    private final String controllerRoute = "/customerorders";
+
     private final CustomerOrderService customerOrderService;
 
     public CustomerOrderController(CustomerOrderService customerOrderService) {
         this.customerOrderService = customerOrderService;
     }
 
-    @GetMapping("/customerorders")
+    @GetMapping(controllerRoute)
     public List<CustomerOrder> getCustomerOrders() {
         return customerOrderService.getCustomerOrders();
     }
 
-    @PostMapping("/customerorders")
+    @GetMapping(controllerRoute+"/{customerOrderId}")
+    public CustomerOrder getCustomerOrder(@PathVariable Long customerOrderId) {
+        return customerOrderService.getCustomerOrderById(customerOrderId);
+    }
+
+    @PostMapping(controllerRoute)
     public CustomerOrder postCustomerOrder(@RequestBody CustomerOrder customerOrder) {
         return customerOrderService.createCustomerOrder(customerOrder);
     }
 
-    @PatchMapping("customerorders/{customerOrderId}")
+    @PatchMapping(controllerRoute+"/{customerOrderId}")
     public CustomerOrder patchCustomerOrder(
             @PathVariable Long customerOrderId,
             @RequestBody UpdateCustomerOrderDto updateCustomerOrderDto) {
