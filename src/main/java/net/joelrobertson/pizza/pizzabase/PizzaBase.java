@@ -1,6 +1,6 @@
 package net.joelrobertson.pizza.pizzabase;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import net.joelrobertson.pizza.pizzabasesize.PizzaBaseSize;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -14,7 +14,7 @@ public class PizzaBase extends AbstractPersistable<Long> {
     private String name;
 
     @OneToMany(mappedBy = "pizzaBase", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonBackReference
     private List<PizzaBaseSize> pizzaBaseSizes = new ArrayList<>();
 
     public List<PizzaBaseSize> getPizzaBaseSizes() {
