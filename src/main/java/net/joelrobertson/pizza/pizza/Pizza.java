@@ -11,8 +11,6 @@ import javax.persistence.*;
 @Entity
 public class Pizza extends AbstractPersistable<Long> {
 
-    private String name;
-
     @ManyToOne
     @JsonBackReference
     private CustomerOrder customerOrder;
@@ -24,14 +22,6 @@ public class Pizza extends AbstractPersistable<Long> {
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false)
     private PizzaTopping pizzaTopping;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public CustomerOrder getCustomerOrder() {
         return customerOrder;
