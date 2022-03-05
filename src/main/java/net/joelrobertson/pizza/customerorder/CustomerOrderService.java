@@ -28,8 +28,13 @@ public class CustomerOrderService {
     public CustomerOrder updateCustomerOrder(Long customerOrderId, UpdateCustomerOrderDto updateCustomerOrderDto) {
         var customerOrder = customerOrderRepository.findById(customerOrderId);
         if (customerOrder.isPresent()) {
-            customerOrder.get().setFulfilled(updateCustomerOrderDto.getFulfilled());
-            return customerOrderRepository.save(customerOrder.get());
+            if (!customerOrder.get().getFulfilled() && updateCustomerOrderDto.getFulfilled()) {
+                customerOrder.get().setFulfilled(updateCustomerOrderDto.getFulfilled());
+                return customerOrderRepository.save(customerOrder.get());
+            }
+            else {
+                return null;
+            }
         }
         else {
             return null;
