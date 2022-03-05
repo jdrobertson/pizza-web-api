@@ -17,7 +17,7 @@ public class PizzaBaseController {
     }
 
     @GetMapping("/pizzabases")
-    public List<PizzaBase> getPizzaBases() {
+    public List<PizzaBaseDto> getPizzaBases() {
         return PizzaBaseService.getPizzaBases();
     }
 
