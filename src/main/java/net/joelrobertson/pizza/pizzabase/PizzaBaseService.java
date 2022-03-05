@@ -25,7 +25,8 @@ public class PizzaBaseService {
                     new PizzaBaseSizeDto(
                         pizzaBaseSize.getId(),
                         pizzaBaseSize.getName(),
-                        pizzaBaseSize.getInches()
+                        pizzaBaseSize.getInches(),
+                        null
                     )
                 ).collect(Collectors.toList())
             )

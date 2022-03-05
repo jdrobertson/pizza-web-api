@@ -32,4 +32,12 @@ public class PizzaBase extends AbstractPersistable<Long> {
     public void setName(String name) {
         this.name = name;
     }
+
+    public PizzaBaseDto asDto() {
+        return new PizzaBaseDto(
+            getId(),
+            getName(),
+            null
+        );
+    }
 }

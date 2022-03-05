@@ -2,11 +2,13 @@ package net.joelrobertson.pizza.customerorder;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import net.joelrobertson.pizza.pizza.Pizza;
+import net.joelrobertson.pizza.pizza.PizzaDto;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class CustomerOrder extends AbstractPersistable<Long> {
@@ -51,5 +53,21 @@ public class CustomerOrder extends AbstractPersistable<Long> {
 
     public void setFulfilled(Boolean fulfilled) {
         this.fulfilled = fulfilled;
+    }
+
+    public CustomerOrderDto asDto() {
+        return new CustomerOrderDto(
+            getId(),
+            getCustomerName(),
+            getCustomerAddress(),
+            getPizzas().stream().map(pizza ->
+                new PizzaDto(
+                    pizza.getId(),
+                    pizza.getPizzaBaseSize().asDto(),
+                    pizza.getPizzaTopping().asDto()
+                )
+            ).collect(Collectors.toList()),
+            getFulfilled()
+        );
     }
 }

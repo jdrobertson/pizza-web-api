@@ -43,4 +43,13 @@ public class PizzaBaseSize extends AbstractPersistable<Long> {
     public void setInches(Integer inches) {
         this.inches = inches;
     }
+
+    public PizzaBaseSizeDto asDto() {
+        return new PizzaBaseSizeDto(
+            getId(),
+            getName(),
+            getInches(),
+            getPizzaBase().asDto()
+        );
+    }
 }

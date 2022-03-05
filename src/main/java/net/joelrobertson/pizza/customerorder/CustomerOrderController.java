@@ -16,12 +16,12 @@ public class CustomerOrderController {
     }
 
     @GetMapping(controllerRoute)
-    public List<CustomerOrder> getCustomerOrders() {
+    public List<CustomerOrderDto> getCustomerOrders() {
         return customerOrderService.getCustomerOrders();
     }
 
     @GetMapping(controllerRoute+"/{customerOrderId}")
-    public CustomerOrder getCustomerOrder(@PathVariable Long customerOrderId) {
+    public CustomerOrderDto getCustomerOrder(@PathVariable Long customerOrderId) {
         return customerOrderService.getCustomerOrderById(customerOrderId);
     }
 

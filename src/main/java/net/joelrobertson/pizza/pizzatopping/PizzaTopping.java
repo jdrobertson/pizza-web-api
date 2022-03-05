@@ -16,4 +16,11 @@ public class PizzaTopping extends AbstractPersistable<Long> {
     public void setName(String name) {
         this.name = name;
     }
+
+    public PizzaToppingDto asDto() {
+        return new PizzaToppingDto(
+            getId(),
+            getName()
+        );
+    }
 }

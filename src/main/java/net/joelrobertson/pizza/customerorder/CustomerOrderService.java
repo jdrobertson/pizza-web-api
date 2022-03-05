@@ -3,6 +3,7 @@ package net.joelrobertson.pizza.customerorder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerOrderService {
@@ -13,12 +14,13 @@ public class CustomerOrderService {
         this.customerOrderRepository = customerOrderRepository;
     }
 
-    public List<CustomerOrder> getCustomerOrders() {
-        return customerOrderRepository.findAll();
+    public List<CustomerOrderDto> getCustomerOrders() {
+        return customerOrderRepository.findAll().stream().map(CustomerOrder::asDto).collect(Collectors.toList());
     }
 
-    public CustomerOrder getCustomerOrderById(Long customerOrderId) {
-        return customerOrderRepository.findById(customerOrderId).orElse(null);
+    public CustomerOrderDto getCustomerOrderById(Long customerOrderId) {
+        var customerOrder = customerOrderRepository.findById(customerOrderId);
+        return customerOrder.map(CustomerOrder::asDto).orElse(null);
     }
 
     public CustomerOrder createCustomerOrder(CustomerOrder customerOrder) {
