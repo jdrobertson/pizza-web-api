@@ -15,7 +15,8 @@ public class CustomerOrderService {
     }
 
     public List<CustomerOrderDto> getCustomerOrders() {
-        return customerOrderRepository.findAll().stream().map(CustomerOrder::asDto).collect(Collectors.toList());
+        return customerOrderRepository.findAllByOrderByFulfilledAsc()
+            .stream().map(CustomerOrder::asDto).collect(Collectors.toList());
     }
 
     public CustomerOrderDto getCustomerOrderById(Long customerOrderId) {
